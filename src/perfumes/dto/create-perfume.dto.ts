@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { IsArray, IsNotEmpty, IsNumber, IsString } from "class-validator";
 
 export class CreatePerfumeDto {
     @IsString()
@@ -21,9 +21,9 @@ export class CreatePerfumeDto {
     @IsNotEmpty({ message: 'La cantidad del producto disponibles es obligatoria' })
     stock: number;
 
-    // @IsString()
-    // @IsNotEmpty({ message: 'La categoría del perfume es obligatoria' })
-    // category: string;
+    @IsArray()
+    @IsNotEmpty({ message: 'Las categorías del perfume es obligatoria' })
+    category: [];
 
     // @IsString()
     // @IsNotEmpty({ message: 'La marca del perfume es obligatoria' })

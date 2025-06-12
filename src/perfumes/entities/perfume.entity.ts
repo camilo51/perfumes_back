@@ -21,8 +21,5 @@ export class Perfume {
     stock: number;
 
     @Column({ type: 'varchar', length: 50, nullable: true })
-    category: string;
-
-    @Column({ type: 'varchar', length: 50, nullable: true })
     brand: string;
 }
