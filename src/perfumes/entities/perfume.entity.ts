@@ -1,4 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Aroma } from "src/aromas/entities/aroma.entity";
+import { Brand } from "src/brands/entities/brand.entity";
+import { Category } from "src/categories/entities/category.entity";
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Perfume {
@@ -20,6 +23,20 @@ export class Perfume {
     @Column({ type: 'integer', nullable: false, default: 0 })
     stock: number;
 
-    @Column({ type: 'varchar', length: 50, nullable: true })
-    brand: string;
+    @ManyToMany(() => Category, (category) => category.perfumes, {
+        cascade: true,
+        eager: true
+    })
+    @JoinTable()
+    categories: Category[];
+
+    @ManyToMany(() => Aroma, (aroma) => aroma.perfumes, {
+        cascade: true,
+        eager: true
+    })
+    @JoinTable()
+    aromas: Aroma[];
+
+    @ManyToOne(() => Brand, (brand) => brand.perfumes, {eager: true})
+    brand: Brand;
 }

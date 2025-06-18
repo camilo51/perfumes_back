@@ -23,9 +23,13 @@ export class CreatePerfumeDto {
 
     @IsArray()
     @IsNotEmpty({ message: 'Las categorías del perfume es obligatoria' })
-    category: [];
+    categories: [];
 
-    // @IsString()
-    // @IsNotEmpty({ message: 'La marca del perfume es obligatoria' })
-    // brand: string;
+    @IsArray()
+    @IsNotEmpty({ message: 'Los aromas del perfume es obligatorios' })
+    aromas: [];
+
+    @IsNumber()
+    @IsNotEmpty({ message: 'La marca del perfume es obligatoria' })
+    brand: number;
 }

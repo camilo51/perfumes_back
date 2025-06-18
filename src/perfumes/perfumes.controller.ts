@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { PerfumesService } from './perfumes.service';
 import { CreatePerfumeDto } from './dto/create-perfume.dto';
 import { UpdatePerfumeDto } from './dto/update-perfume.dto';
@@ -13,8 +13,9 @@ export class PerfumesController {
   }
 
   @Get()
-  findAll() {
-    return this.perfumesService.findAll();
+  findAll(@Query('limit') limit?: string) {
+    const parsedLimit = limit ? parseInt(limit) : undefined;
+    return this.perfumesService.findAll(parsedLimit);
   }
 
   @Get(':id')
